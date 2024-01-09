@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Quiz Making App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+A working demonstration can be found in [my linkedin post!](https://www.linkedin.com/posts/stephen-e-cunningham-7077b6239_as-i-was-studying-for-comptia-exams-there-activity-7148860602315141120-6p69?utm_source=share&utm_medium=member_desktop)
 
-In the project directory, you can run:
 
-### `npm start`
+## App Background
 
+This is the UI for a Quiz Making app that I have called `Quiz Blank`. The backend service for this app [can be found here](https://github.com/Step-henC/quizard_backend_go)
+This app allows for completions of self-assessment quizzes. Ideal for people like me preparing for exams and certifications. Ulitmately, this app became an excuse to work with tools 
+I found exciting during my reading. 
+
+## How is this app built.
+
+Quiz Blank or quizard uses [Apollo GraphQL](https://www.apollographql.com/docs/react/data/mutations/) server to send mutations to the Elasticsearch backend with link in the `App Backgorund` section. 
+
+### State management
+
+Quiz Blank makes use of Apollo's built-in memory cache for [state management](https://www.apollographql.com/docs/react/local-state/local-state-management/). As a result, fewer network calls are needed as the database becomes eventually consistent with the apollo cache. Also, local state management with cache make for a smoother user experience. 
+
+## How To Run Quiz Blank 
+
+#### NPM installed
+
+Enter the project's directory and type the following command: `npm run start`.
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+#### Run with Docker
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For those with no npm, make sure you have [Docker Engine installed](https://docs.docker.com/engine/install/)
+Build the image in the Dockerfile in the root directory.
 
-### `npm run build`
+`docker build -t quizard_fe:latest .`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then run the container 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`docker run --name quizard_frontend -p 3000:3000 -d quizard_fe:latest`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm run eject`
+## Considerations
+ - State storage: Writing to Apollo GraphQL in-memory cache may not be as quick to develop with for local state management as oppose to use Redux or IndexedDB for state management.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
